@@ -79,15 +79,17 @@ const Navbar = () => {
           />
 
           <div
-            className={`${!toggle ? "hidden" : "flex"
-              } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            className={`${
+              !toggle ? "hidden" : "flex"
+            } p-6 bg-primary/95 backdrop-blur-md border border-[#c4a1fb]/20 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-2xl`}
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"
-                    }`}
+                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                    active === nav.title ? "text-white" : "text-secondary"
+                  } hover:text-white transition-colors duration-200`}
                   onClick={() => {
                     setToggle(!toggle);
                     setActive(nav.title);
@@ -96,7 +98,7 @@ const Navbar = () => {
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
-              <li className='font-poppins font-medium cursor-pointer text-[16px] text-[#c4a1fb] hover:text-white transition duration-300'>
+              <li className='font-poppins font-medium cursor-pointer text-[16px] text-[#c4a1fb] hover:text-white transition-colors duration-200'>
                 <a
                   href='https://drive.google.com/file/d/1mQNwWwX8v7LZvQbHxf_X_A8RSC2l0UDp/view?usp=drive_link'
                   target='_blank'
