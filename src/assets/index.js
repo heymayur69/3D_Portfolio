@@ -21,14 +21,25 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
+import c from "./tech/c.svg";
+import cpp from "./tech/cpp.svg";
+import python from "./tech/python.svg";
+import stm32 from "./tech/stm32.svg";
+import esp32 from "./tech/esp32.svg";
+import freertos from "./tech/freertos.svg";
+import linux from "./tech/linux.svg";
+import canbus from "./tech/canbus.svg";
+import gdb from "./tech/gdb.svg";
+import gcc from "./tech/gcc.svg";
+
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
 import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import jobit from "./jobit.jpg";
+import tripguide from "./tripguide.jpg";
 
 export {
   logo,
@@ -52,6 +63,16 @@ export {
   tailwind,
   typescript,
   threejs,
+  c,
+  cpp,
+  python,
+  stm32,
+  esp32,
+  freertos,
+  linux,
+  canbus,
+  gdb,
+  gcc,
   meta,
   shopify,
   starbucks,

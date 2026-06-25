@@ -3,7 +3,7 @@ import { Tilt } from 'react-tilt'
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles'
-import { services } from '../constants'
+import { services, labTools } from '../constants'
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from '../hoc';
 
@@ -41,20 +41,44 @@ const About = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview</h2>
+        <h1 className={`${styles.heroHeadText} text-white`}>
+          <span className='text-[#c4a1fb]'>Overview</span>
+        </h1>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        Dedicated full-stack developer with a comprehensive understanding of front-end and back-end technologies. Proficient in HTML, CSS, JavaScript, and experienced in building dynamic web applications. Skilled in server-side languages such as Node.js and Python, with a focus on creating scalable and efficient backend solutions. Strong collaborator with a passion for problem-solving and continuous learning. Ready to leverage expertise to drive impactful projects forward.
+        Dedicated Embedded Systems Engineer with hands-on experience in STM32, Embedded C, FreeRTOS, Linux Device Drivers, and communication protocols including UART, SPI, I2C, and CAN. Experienced in firmware development, peripheral interfacing, hardware debugging, and real-time embedded system design. Built projects involving CAN-based vehicle monitoring, Linux kernel modules, and EMG-based human-machine interfaces. Passionate about solving real-world engineering problems and continuously learning new technologies in embedded software and firmware development.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
+      </div>
+
+      <div className='mt-20'>
+        <motion.div variants={textVariant()}>
+          <p className={styles.sectionSubText}>Hands-on experience</p>
+          <h2 className='text-white font-black md:text-[50px] sm:text-[40px] xs:text-[30px] text-[26px]'>
+            Lab Equipment & Tools
+          </h2>
+        </motion.div>
+
+        <div className='mt-10 flex flex-wrap gap-5'>
+          {labTools.map((tool, index) => (
+            <motion.div
+              key={tool.name}
+              variants={fadeIn("up", "spring", index * 0.1, 0.55)}
+              className='bg-tertiary p-5 rounded-2xl sm:w-[230px] w-full border border-[#c4a1fb]/10 hover:border-[#c4a1fb]/60 transition duration-300'
+            >
+              <h3 className='text-white text-[18px] font-bold'>{tool.name}</h3>
+              <p className='text-secondary text-[14px] mt-2 leading-[20px]'>{tool.description}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
     </>

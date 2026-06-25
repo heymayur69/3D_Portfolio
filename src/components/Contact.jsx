@@ -33,7 +33,7 @@ const Contact = () => {
 
     emailjs
       .send(
-        'service_hdfydc6',
+        'service_08kczok',
         'template_dcxjrov',
         {
           from_name: form.name,
@@ -42,7 +42,7 @@ const Contact = () => {
           to_email: "mayurmm2004@gmail.com",
           message: form.message,
         },
-        XeEEabPWKkYyIWyQ3
+        'XeEEabPWKkYyIWyQ3'
       )
       .then(
         () => {
@@ -73,7 +73,7 @@ const Contact = () => {
         className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
       >
         <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <h3 className={styles.sectionHeadText}> <span className='text-[#c4a1fb]'>Contact</span></h3>
 
         <form
           ref={formRef}
