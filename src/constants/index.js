@@ -239,7 +239,8 @@ const labTools = [
   { name: "JTAG / SWD Debuggers", description: "Hardware flashing & debugging" },
   { name: "Digital Multimeter", description: "Voltage, current, & continuity checks" },
   { name: "Function Generator", description: "Signal simulation & clock injection" },
-  { name: "Soldering & SMD Rework", description: "PCB prototyping & assembly" }
+  { name: "Soldering & SMD Rework", description: "PCB prototyping & assembly" },
+  { name: "PCB Designing", description: "Schematics & board layout using KiCad & Altium" }
 ];
 
 export { services, technologies, experiences, testimonials, projects, labTools };
