@@ -1,10 +1,11 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
+import { useResponsive } from "../../hooks/useResponsive";
 
-const Computers = ({ isMobile, isTablet }) => {
+const Computers = ({ scale, position }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
@@ -21,8 +22,8 @@ const Computers = ({ isMobile, isTablet }) => {
       <pointLight intensity={0.2} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.45 : isTablet ? 0.60 : 0.75}
-        position={isMobile ? [0, -2.2, -1.2] : isTablet ? [0, -2.6, -1.4] : [0, -3.25, -1.5]}
+        scale={scale}
+        position={position}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -30,42 +31,24 @@ const Computers = ({ isMobile, isTablet }) => {
 };
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth <= 500;
-    }
-    return false;
-  });
-  const [isTablet, setIsTablet] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth > 500 && window.innerWidth <= 768;
-    }
-    return false;
-  });
+  const { isMobile, isTablet, isSmallLaptop, isMediumLaptop } = useResponsive();
 
-  useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 500px)");
-    const tabletQuery = window.matchMedia("(max-width: 768px)");
+  let scale = 0.75;
+  let position = [0, -3.25, -1.5];
 
-    setIsMobile(mobileQuery.matches);
-    setIsTablet(tabletQuery.matches && !mobileQuery.matches);
-
-    const handleMobileChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    const handleTabletChange = (event) => {
-      setIsTablet(event.matches);
-    };
-
-    mobileQuery.addEventListener("change", handleMobileChange);
-    tabletQuery.addEventListener("change", handleTabletChange);
-
-    return () => {
-      mobileQuery.removeEventListener("change", handleMobileChange);
-      tabletQuery.removeEventListener("change", handleTabletChange);
-    };
-  }, []);
+  if (isMobile) {
+    scale = 0.45;
+    position = [0, -2.2, -1.2];
+  } else if (isTablet) {
+    scale = 0.60;
+    position = [0, -2.6, -1.4];
+  } else if (isSmallLaptop) {
+    scale = 0.62;
+    position = [0, -2.85, -1.3];
+  } else if (isMediumLaptop) {
+    scale = 0.68;
+    position = [0, -3.05, -1.4];
+  }
 
   return (
     <Canvas
@@ -75,13 +58,13 @@ const ComputersCanvas = () => {
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
     >
-      <Suspense fallback={<CanvasLoader/>}>
+      <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} isTablet={isTablet} />
+        <Computers scale={scale} position={position} />
       </Suspense>
 
       <Preload all />

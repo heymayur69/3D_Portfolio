@@ -1,0 +1,336 @@
+/*
+  ======================================================================
+  RESPONSIVE & MOBILE-FIRST LAYOUT SYSTEM (STANDALONE PRODUCTION STYLES)
+  ======================================================================
+  
+  This stylesheet implements a complete responsive grid, fluid container,
+  scalable typography, and layout reset system optimized for multiple viewports.
+  
+  Breakpoints:
+  - Mobile (xs/sm)      : <= 640px
+  - Tablet (md)         : 641px - 1024px
+  - Small Laptop (lg)   : 1025px - 1366px (13-inch screens)
+  - Medium Laptop (xl)  : 1367px - 1600px (15-inch screens)
+  - Large Desktop (2xl) : > 1600px         (17-inch / 1080p / 4K)
+*/
+
+/* ---------------------------------------------------------
+   1. CSS DESIGN VARIABLES & DESIGN TOKENS
+   --------------------------------------------------------- */
+:root {
+  /* Color Palette */
+  --color-primary: #050816;
+  --color-secondary: #aaa6c3;
+  --color-tertiary: #151030;
+  --color-accent: #c4a1fb;
+  --color-accent-hover: #b085fa;
+  --color-white: #ffffff;
+  --color-dark-100: #100d25;
+  --color-dark-200: #090325;
+  --color-light-100: #f3f3f3;
+
+  /* Font Families */
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-round: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0px 35px 120px -15px #211e35;
+  --shadow-neon: 0 0 15px rgba(196, 161, 251, 0.4);
+}
+
+/* ---------------------------------------------------------
+   2. SYSTEM RESET & LAYOUT RESETS
+   --------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base size */
+  scroll-behavior: smooth;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-primary) !important;
+  color: var(--color-white);
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Standard focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Images & Media Resets */
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   3. FLUID TYPOGRAPHY SYSTEM
+   --------------------------------------------------------- */
+/* Fluid font size calculations using CSS clamp() */
+h1 {
+  font-size: clamp(2.5rem, 6vw + 1rem, 5rem); /* lg:80px, sm:60px, xs:50px, text:40px */
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw + 1rem, 3.75rem); /* md:60px, sm:50px, xs:40px, text:30px */
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw + 1rem, 2.25rem);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+p {
+  font-size: clamp(0.875rem, 0.5vw + 0.8rem, 1.125rem); /* Scales beautifully */
+  color: var(--color-secondary);
+}
+
+/* Subtext & Labels */
+.section-subtext {
+  font-size: clamp(0.75rem, 0.2vw + 0.75rem, 1.125rem);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------
+   4. FLUID CONTAINER SYSTEM
+   --------------------------------------------------------- */
+/* Centralized container with responsive paddings */
+.container-fluid {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80rem; /* 1280px */
+  padding-left: clamp(1.5rem, 5vw, 4rem);  /* Fluid horizontal padding */
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+
+/* Responsive Vertical Spacing Classes */
+.section-padding {
+  padding-top: clamp(2.5rem, 8vh + 1rem, 8rem);
+  padding-bottom: clamp(2.5rem, 8vh + 1rem, 8rem);
+}
+
+/* ---------------------------------------------------------
+   5. RESPONSIVE GRID LAYOUTS
+   --------------------------------------------------------- */
+/* Flexible CSS Grids that prevent layout breakage */
+.grid-responsive-services {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  justify-items: center;
+}
+
+.grid-responsive-projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  justify-items: stretch;
+}
+
+.grid-responsive-tools {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  justify-items: stretch;
+}
+
+/* ---------------------------------------------------------
+   6. PORTFOLIO ELEMENTS (GLASS CARDS, BUTTONS & GLOW EFFECTS)
+   --------------------------------------------------------- */
+/* Premium Glassmorphic Cards */
+.glass-card {
+  background: var(--color-tertiary);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(196, 161, 251, 0.1);
+  box-shadow: var(--shadow-card);
+  transition: border var(--transition-normal), box-shadow var(--transition-normal);
+  padding: 1.5rem;
+}
+
+.glass-card:hover {
+  border-color: rgba(196, 161, 251, 0.6);
+  box-shadow: 0 10px 30px rgba(196, 161, 251, 0.15);
+}
+
+/* Premium Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-2px);
+}
+
+/* Gradients */
+.black-gradient {
+  background: linear-gradient(to right, #434343, #000000);
+}
+
+.violet-gradient {
+  background: linear-gradient(-90deg, #c4a1fb 0%, rgba(60, 51, 80, 0) 100%);
+}
+
+.green-pink-gradient {
+  background: linear-gradient(90.13deg, #c4a1fb 1.9%, #bf61ff 97.5%);
+}
+
+/* ---------------------------------------------------------
+   7. CUSTOM SLEEK SCROLLBARS
+   --------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(196, 161, 251, 0.3);
+  border-radius: var(--radius-round);
+  border: 2px solid var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(196, 161, 251, 0.6);
+}
+
+/* ---------------------------------------------------------
+   8. MEDIA QUERIES BREAKPOINTS
+   --------------------------------------------------------- */
+
+/* Tablet Breakpoint (md: width > 640px) */
+@media (min-width: 641px) {
+  .grid-responsive-services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-responsive-projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-responsive-tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small Laptop Breakpoint (lg: width > 1024px) */
+@media (min-width: 1025px) {
+  .grid-responsive-services {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-responsive-projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-responsive-tools {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Reset container layout sizing */
+  .hero-text-container {
+    top: 120px;
+  }
+}
+
+/* Medium Laptop Breakpoint (xl: width > 1366px) */
+@media (min-width: 1367px) {
+  .grid-responsive-tools {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Additional vertical spacing adjustments for comfortable reading */
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Large Desktop Breakpoint (2xl: width > 1600px) */
+@media (min-width: 1601px) {
+  .container-fluid {
+    max-width: 90rem; /* Wide container for large displays */
+  }
+}
+
+/* ---------------------------------------------------------
+   9. INTERACTIVE & UTILITY FALLBACKS
+   --------------------------------------------------------- */
+/* Fallback utilities to force show elements when animations fail */
+.force-show-elements {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* WebGL fallback layout styling */
+.three-canvas-mobile-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  background: radial-gradient(circle, rgba(21, 16, 48, 0.4) 0%, rgba(5, 8, 22, 0.8) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(196, 161, 251, 0.2);
+}

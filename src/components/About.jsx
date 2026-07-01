@@ -9,7 +9,7 @@ import { SectionWrapper } from '../hoc';
 
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
+  <Tilt className='w-full max-w-[280px] sm:max-w-[250px] mx-auto'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
@@ -53,7 +53,7 @@ const About = () => {
         Dedicated Embedded Systems Engineer with hands-on experience in STM32, Embedded C, FreeRTOS, Linux Device Drivers, and communication protocols including UART, SPI, I2C, and CAN. Experienced in firmware development, peripheral interfacing, hardware debugging, and real-time embedded system design. Built projects involving CAN-based vehicle monitoring, Linux kernel modules, and EMG-based human-machine interfaces. Passionate about solving real-world engineering problems and continuously learning new technologies in embedded software and firmware development.
       </motion.p>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
+      <div className='mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
@@ -67,12 +67,12 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className='mt-10 flex flex-wrap gap-5'>
+        <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-stretch'>
           {labTools.map((tool, index) => (
             <motion.div
               key={tool.name}
               variants={fadeIn("up", "spring", index * 0.1, 0.55)}
-              className='bg-tertiary p-5 rounded-2xl sm:w-[230px] w-full border border-[#c4a1fb]/10 hover:border-[#c4a1fb]/60 transition duration-300'
+              className='bg-tertiary p-5 rounded-2xl w-full border border-[#c4a1fb]/10 hover:border-[#c4a1fb]/60 transition duration-300 max-w-[280px] sm:max-w-none mx-auto'
             >
               <h3 className='text-white text-[18px] font-bold'>{tool.name}</h3>
               <p className='text-secondary text-[14px] mt-2 leading-[20px]'>{tool.description}</p>

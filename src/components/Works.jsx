@@ -24,7 +24,7 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
+        className='bg-tertiary p-5 rounded-2xl w-full max-w-[380px] sm:max-w-none mx-auto cursor-pointer'
         onClick={() => window.open(source_code_link, "_blank")}
       >
         <div className='relative w-full h-[230px]'>
@@ -92,7 +92,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
+      <div className='mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-stretch'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
